@@ -32,6 +32,10 @@ public class GBUser
 		this.currentSession = new GBSession(result);	
 	}
 
+	public void ClearSession() {
+		this.currentSession.clear();
+	}
+
 	public GBSession getActiveSession() {
 		return currentSession;
 	}

@@ -36,7 +36,9 @@ namespace GB.Account
 
 			if (state.Equals(SessionState.ACCESS_FAILED)) {
 				sessionStateCallback(state, new GBException(response[API_RESPONSE_ERROR_KEY].ToString()));
-			} else {
+			} else if (state.Equals(SessionState.CLOSED)) {
+				GBUser.Instance.ClearSession();
+			} else { // Session Open
 				GBUser.Instance.UpdateProfileInfo(response["data"]);
 				sessionStateCallback(state, null);
 			}				

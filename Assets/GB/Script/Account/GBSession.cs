@@ -38,6 +38,10 @@ namespace GB
 			return userKey;
 		}
 		
+		public void clear() {
+			userKey = null;
+			userId = null;
+		}
 		public override string ToString() {
 			
 			System.Text.StringBuilder sb = new System.Text.StringBuilder();
