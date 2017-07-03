@@ -244,7 +244,8 @@ public class GBSampleView : MonoBehaviour {
 		}		
 
 		if(GUI.Button(new Rect(0, posY += BUTTON_HEIGHT, scrollContentsWidth, BUTTON_HEIGHT), "Show Ad (Reward Video)", buttonStyle)) {
-			GBAdManager.Instance.ShowAd();
+			if (GBAdManager.Instance.isEnableAds())
+				GBAdManager.Instance.ShowAd();
 		}				
 					
 		GUI.Label(new Rect(0, posY += BUTTON_HEIGHT, scrollContentsWidth, labalHeight), sdkLog, labelStyle);		

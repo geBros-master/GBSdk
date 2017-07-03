@@ -91,17 +91,8 @@ void Logout(const char *callbackId)
     __block NSString *objectName = [[NSString alloc] initWithUTF8String:callbackId];
     
     [GBSession logout:^(GBSession *newSession, GBError *error) {
-        
-        NSString *resultJson = nil;
-        
-        if (error != nil) {
-            resultJson = [GBForUnity makeSessionResponse:ACCESS_FAILED data:nil error:error];
-            SendToUnity([objectName UTF8String], 0, [resultJson UTF8String]);
-        } else {
-            resultJson = [GBForUnity makeSessionResponse:CLOSED data:[NSNull null] error:nil];
-            SendToUnity([objectName UTF8String], 1, [resultJson UTF8String]);
-        }
-    
+        NSString *result = [GBForUnity makeSessionResponse:CLOSED data:[newSession sessionInfo] error:error];
+        SendToUnity([objectName UTF8String], (error == nil) ? 1 : 0, [result UTF8String]);
     }];
 }
 
